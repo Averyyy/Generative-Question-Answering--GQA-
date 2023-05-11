@@ -85,4 +85,4 @@ if __name__ == '__main__':
 
     model = GenerativeQAModel(bert_model_name, gpt2_model_name)
 
-    train(model, dataset, bert_model_name, batch_size=32, epochs=10, lr=0.001)
+    train(model, dataset, bert_model_name, batch_size=1, epochs=10, lr=0.001)
