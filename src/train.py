@@ -1,7 +1,7 @@
 # File: src/train.py
 
 from torch.utils.data import DataLoader
-from transformers import AdamW
+from transformers import AdamW, logging
 from bert_score import score
 from data import TruthfulQADataset
 from datasets import load_dataset, load_metric
@@ -9,7 +9,7 @@ from model import Retriever, Generator, RetrieverGenerator
 import torch
 
 from sentence_transformers import SentenceTransformer, util
-
+logging.set_verbosity_error()
 # Instantiate the SentenceTransformer once
 st_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
