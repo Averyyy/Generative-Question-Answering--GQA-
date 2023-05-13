@@ -9,7 +9,6 @@ from model import Retriever, Generator, RetrieverGenerator
 import torch
 
 from sentence_transformers import SentenceTransformer, util
-logging.set_verbosity_error()
 # Instantiate the SentenceTransformer once
 st_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
@@ -99,6 +98,8 @@ def train(model, dataset, batch_size=1, epochs=5):
             if i % 50 == 0:
                 print(
                     f"Epoch {epoch+1}/{epochs} Batch {i+1} Loss: {loss.item()}")
+                torch.save(model.state_dict(),
+                           f"checkpoints/model_{epoch+1}.pth")
 
         print(f"Epoch {epoch+1}/{epochs} Loss: {loss.item()}")
 
@@ -107,4 +108,5 @@ if __name__ == "__main__":
     dataset_path = "data/truthful_qa"
     dataset = TruthfulQADataset(dataset_path)
     model = RetrieverGenerator()
+    logging.set_verbosity_error()
     train(model, dataset)

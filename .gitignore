@@ -1,3 +1,4 @@
 /.vscode
 /data
-/utils
+checkpoints
+__pycache__

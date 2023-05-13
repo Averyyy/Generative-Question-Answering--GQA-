@@ -1,8 +1,8 @@
-# File: src/data.py
-
+# data.py
 from datasets import load_from_disk
 from torch.utils.data import Dataset
 from transformers import BertTokenizer
+import re
 
 
 class TruthfulQADataset(Dataset):
@@ -27,7 +27,8 @@ class TruthfulQADataset(Dataset):
 
         # Sliding window approach to extract spans from the source_text
         spans = []
-        source_text_words = source_text.split(' ')
+        # source_text_words = source_text.split(' ')
+        source_text_words = re.split('; |, |\n|\t| ', source_text)
         for i in range(0, len(source_text_words), self.max_length - len(question_tokens) - 3):
             span_words = source_text_words[i:i +
                                            self.max_length - len(question_tokens) - 3]

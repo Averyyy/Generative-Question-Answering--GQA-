@@ -53,10 +53,11 @@ class Generator(nn.Module):
 
     def forward(self, question_tokens, top_k_spans_tokens):
         # Concatenate question and all span tokens together
-        input_tokens = ['[CLS]'] + question_tokens + ['[SEP]']
+        input_tokens = ['[CLS]']  # + question_tokens + ['[SEP]']
         for span_token in top_k_spans_tokens:
             span_token = list(span_token)
             input_tokens += span_token + ['[SEP]']
+        input_tokens += question_tokens + ['[SEP]']
 
         # Convert input tokens to ids
         input_ids = torch.tensor(
