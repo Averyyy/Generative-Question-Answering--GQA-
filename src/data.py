@@ -1,9 +1,8 @@
-# data.py
+#data.py
 from datasets import load_from_disk
 from torch.utils.data import Dataset
 from transformers import BertTokenizer
 import re
-
 
 class TruthfulQADataset(Dataset):
     def __init__(self, dataset_path):

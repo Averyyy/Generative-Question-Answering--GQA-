@@ -45,6 +45,7 @@ class Retriever(nn.Module):
         return top_k_spans_tokens
 
 
+
 class Generator(nn.Module):
     def __init__(self):
         super(Generator, self).__init__()
@@ -53,7 +54,7 @@ class Generator(nn.Module):
 
     def forward(self, question_tokens, top_k_spans_tokens):
         # Concatenate question and all span tokens together
-        input_tokens = ['[CLS]']  # + question_tokens + ['[SEP]']
+        input_tokens = ['[CLS]'] #+ question_tokens + ['[SEP]']
         for span_token in top_k_spans_tokens:
             span_token = list(span_token)
             input_tokens += span_token + ['[SEP]']
@@ -69,6 +70,7 @@ class Generator(nn.Module):
         generated_answer = self.tokenizer.decode(output[0])
 
         return generated_answer
+
 
 
 class RetrieverGenerator(torch.nn.Module):
